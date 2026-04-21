@@ -2,257 +2,116 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HAPS Solutions</title>
-  <meta name="description" content="HAPS Solutions hjælper med events, bemanding, praktisk hjælp og skræddersyede løsninger. Vi finder en løsning til næsten enhver opgave." />
   <style>
-    :root{
-      --bg:#f8f5ee; --bg-soft:#fcfaf6; --panel:#ffffff; --text:#1f2430; --muted:#5f6675;
-      --line:#e9e2d5; --accent:#c9a96a; --accent-dark:#a8843f; --shadow:0 18px 40px rgba(31,36,48,.08);
-      --radius:22px; --max:1180px;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #111;
+      text-align: center;
     }
-    *{box-sizing:border-box} html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);
-      background:radial-gradient(circle at top right, rgba(201,169,106,.10), transparent 28%),linear-gradient(180deg, #fbf8f2 0%, #f7f2e9 100%);line-height:1.58}
-    a{color:inherit;text-decoration:none}.container{width:min(calc(100% - 32px), var(--max)); margin:0 auto}
-    .nav{position:sticky;top:0;z-index:100;background:rgba(251,248,242,.9);backdrop-filter: blur(14px) saturate(180%);border-bottom:1px solid var(--line)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.04em}
-    .brand-mark{width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,#e7d1a4,#c9a96a);box-shadow:0 8px 18px rgba(201,169,106,.22)}
-    .nav-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:.96rem}
-    .nav-links a:hover{color:var(--text)}
-    .lang-toggle{border:1px solid var(--line);background:#fff;color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer}
-    .cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:15px 22px;font-weight:600;transition:.2s ease;border:1px solid transparent}
-    .cta:hover{transform:translateY(-1px)}
-    .cta-primary{background:linear-gradient(135deg,#d8bb83,#f0ddb5);color:#2a2417;box-shadow:0 10px 24px rgba(201,169,106,.18)}
-    .cta-secondary{background:#fff;border-color:var(--line);color:var(--text)}
-    .hero{padding:84px 0 44px}.hero-grid{display:grid;grid-template-columns:1.2fr .9fr;gap:28px;align-items:stretch}
-    .eyebrow{display:inline-block;color:var(--accent-dark);text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;margin-bottom:18px;font-weight:700}
-    h1{font-size:clamp(2.2rem, 5vw, 4.4rem);line-height:1.02;letter-spacing:-.04em;margin:0 0 18px;max-width:12ch}
-    .lead{font-size:1.08rem;color:var(--muted);max-width:64ch;margin:0 0 24px}
-    .explain-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:0 0 24px;box-shadow:var(--shadow)}
-    .explain-box b{display:block;margin-bottom:8px;font-size:1rem}.explain-box p{margin:0;color:var(--muted)}
-    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px}.trust{display:flex;flex-wrap:wrap;gap:12px}
-    .trust span{background:rgba(255,255,255,.72);border:1px solid var(--line);padding:10px 14px;border-radius:999px;color:#384050;font-size:.94rem}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .showcase{padding:26px;display:flex;flex-direction:column;justify-content:space-between;min-height:100%;background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(250,247,241,.98))}
-    .showcase-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:22px}
-    .pill{display:inline-block;font-size:.8rem;color:#2a2417;background:#efdec0;padding:8px 12px;border-radius:999px;font-weight:700}
-    .small{color:var(--muted);font-size:.95rem}.price-range{font-size:clamp(1.9rem, 4vw, 3rem);letter-spacing:-.03em;margin:8px 0 0}
-    .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.mini{padding:18px;border-radius:18px;background:var(--bg-soft);border:1px solid var(--line)}
-    .mini b{display:block;font-size:1rem;margin-bottom:6px}.mini p{margin:0;color:var(--muted);font-size:.95rem}
-    section{padding:34px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px}
-    .section-head h2{margin:0;font-size:clamp(1.8rem, 4vw, 3rem);letter-spacing:-.03em}.section-head p{margin:0;color:var(--muted);max-width:58ch}
-    .services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.service{padding:22px}
-    .icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#f5ead5;color:var(--accent-dark);font-weight:800;margin-bottom:16px;border:1px solid #ead9b6}
-    .service h3{margin:0 0 8px;font-size:1.1rem}.service p{margin:0;color:var(--muted)}
-    .wide-copy{margin-top:18px;padding:20px 22px}.wide-copy p{margin:0;color:var(--muted)}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.process,.contact,.jobs{padding:28px}
-    .steps{display:grid;gap:16px;margin-top:18px}.step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line)}
-    .step:first-child{border-top:0}.nr{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:var(--bg-soft);border:1px solid var(--line);color:var(--accent-dark);font-weight:700}
-    .step h4{margin:0 0 6px}.step p{margin:0;color:var(--muted)}
-    .jobs-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}.job-points{display:grid;gap:12px;margin-top:18px}
-    .job-points div{padding:14px 16px;border-radius:16px;background:var(--bg-soft);border:1px solid var(--line);color:var(--muted)}
-    form{display:grid;gap:14px;margin-top:16px}
-    input,textarea,select{width:100%;padding:15px 16px;border-radius:16px;border:1px solid var(--line);background:#fff;color:var(--text);outline:none;font:inherit}
-    textarea{min-height:140px;resize:vertical} input::placeholder,textarea::placeholder{color:#8f95a3}
-    .fine{font-size:.89rem;color:var(--muted)} footer{padding:38px 0 48px;color:var(--muted);font-size:.94rem}
-    .footer-card{padding:18px 22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
-    @media (max-width: 980px){.hero-grid,.split,.jobs-wrap{grid-template-columns:1fr}.services{grid-template-columns:1fr 1fr}.nav-links a.hide-mobile{display:none}}
-    @media (max-width: 640px){.services,.mini-grid{grid-template-columns:1fr}.hero{padding-top:58px}.footer-card{flex-direction:column} h1{max-width:none}}
+
+    section {
+      padding: 40px 20px;
+    }
+
+    .hero {
+      background: white;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .contact {
+      background: white;
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+
+    button {
+      padding: 10px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
   </style>
 </head>
+
 <body>
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#top"><span class="brand-mark"></span><span>HAPS Solutions</span></a>
-      <div class="nav-links">
-        <a class="hide-mobile" href="#services" data-da="Hvad vi hjælper med" data-en="What we do">Hvad vi hjælper med</a>
-        <a class="hide-mobile" href="#process" data-da="Sådan foregår det" data-en="How it works">Sådan foregår det</a>
-        <a class="hide-mobile" href="#jobs" data-da="Søg job" data-en="Apply for work">Søg job</a>
-        <a class="hide-mobile" href="#contact" data-da="Kontakt" data-en="Contact">Kontakt</a>
-        <button id="langToggle" class="lang-toggle" type="button">EN</button>
-      </div>
-    </div>
-  </nav>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow" data-da="Enkelt, trygt og skræddersyet" data-en="Simple, reliable, and tailored">Enkelt, trygt og skræddersyet</span>
-          <h1 data-da="Uanset budget og idé — så finder vi en løsning." data-en="No matter the budget or idea — we find a solution.">Uanset budget og idé — så finder vi en løsning.</h1>
-          <p class="lead" data-da="Vi hjælper med events, bemanding og det praktiske — så du slipper. Det kan være et privat arrangement, et firmaevent, hjælp på dagen eller noget helt andet, hvor der bare skal findes en god løsning." data-en="We help with events, staffing, and the practical side — so you do not have to. That can mean a private event, a corporate event, help on the day, or something else entirely where a good solution is needed.">Vi hjælper med events, bemanding og det praktiske — så du slipper. Det kan være et privat arrangement, et firmaevent, hjælp på dagen eller noget helt andet, hvor der bare skal findes en god løsning.</p>
+<section class="hero">
+  <h1>HAPS Solutions</h1>
+  <p>Vi hjælper med events – nemt og fleksibelt</p>
+</section>
 
-          <div class="explain-box">
-            <b data-da="Helt kort: Hvad er HAPS Solutions?" data-en="In short: what is HAPS Solutions?">Helt kort: Hvad er HAPS Solutions?</b>
-            <p data-da="Vi er en fleksibel løsning for folk, der mangler hjælp. Nogle har brug for bartendere. Nogle har brug for servering. Nogle har brug for hænder til opbygning, oprydning eller praktisk afvikling. Andre har bare en idé og ved ikke helt, hvor de skal starte. Vi hjælper med at få det til at ske." data-en="We are a flexible solution for people who need help. Some need bartenders. Some need servers. Some need hands for setup, cleanup, or practical execution. Others simply have an idea and do not know where to start. We help make it happen.">Vi er en fleksibel løsning for folk, der mangler hjælp. Nogle har brug for bartendere. Nogle har brug for servering. Nogle har brug for hænder til opbygning, oprydning eller praktisk afvikling. Andre har bare en idé og ved ikke helt, hvor de skal starte. Vi hjælper med at få det til at ske.</p>
-          </div>
+<section>
+  <h2>Det tilbyder vi</h2>
+  <div class="services">
+    <div class="box">Bartendere</div>
+    <div class="box">DJs</div>
+    <div class="box">Servering</div>
+    <div class="box">Oprydning</div>
+    <div class="box">Eventhjælp</div>
+    <div class="box">Skræddersyede løsninger</div>
+  </div>
+</section>
 
-          <div class="hero-actions">
-            <a class="cta cta-primary" href="#contact" data-da="Få en uforpligtende snak" data-en="Book a no-obligation call">Få en uforpligtende snak</a>
-            <a class="cta cta-secondary" href="#jobs" data-da="Søg job hos os" data-en="Apply for work">Søg job hos os</a>
-          </div>
+<section>
+  <h2>Sådan fungerer det</h2>
+  <p>1. Du kontakter os</p>
+  <p>2. Vi finder en løsning</p>
+  <p>3. Du nyder festen</p>
+</section>
 
-          <div class="trust">
-            <span data-da="For private og virksomheder" data-en="For private and corporate clients">For private og virksomheder</span>
-            <span data-da="Vi holder os brede" data-en="We stay broad on purpose">Vi holder os brede</span>
-            <span data-da="Vi prøver at finde en løsning" data-en="We try to find a solution">Vi prøver at finde en løsning</span>
-          </div>
-        </div>
+<section>
+  <h2>Følg os</h2>
+  <p>Instagram: @hapssolutions.dk</p>
+</section>
 
-        <div class="card showcase">
-          <div class="showcase-top">
-            <div>
-              <div class="pill" data-da="Bred og fleksibel hjælp" data-en="Broad and flexible support">Bred og fleksibel hjælp</div>
-              <div class="small" data-da="Vi tilpasser os opgaven" data-en="We adapt to the task">Vi tilpasser os opgaven</div>
-              <div class="price-range" data-da="Fra små ting til store behov" data-en="From small needs to larger setups">Fra små ting til store behov</div>
-            </div>
-            <div class="small">DK / EN</div>
-          </div>
+<section>
+  <h2>Vil du arbejde med os?</h2>
+  <p>Skriv til os og fortæl hvad du kan</p>
+</section>
 
-          <div class="mini-grid">
-            <div class="mini">
-              <b data-da="Private arrangementer" data-en="Private events">Private arrangementer</b>
-              <p data-da="Fester, middage, receptioner og andre begivenheder, hvor du gerne vil have hjælp." data-en="Parties, dinners, receptions, and other occasions where you want help.">Fester, middage, receptioner og andre begivenheder, hvor du gerne vil have hjælp.</p>
-            </div>
-            <div class="mini">
-              <b data-da="Virksomheder" data-en="Businesses">Virksomheder</b>
-              <p data-da="Firmaevents, bemanding og praktiske løsninger, når der skal være styr på tingene." data-en="Corporate events, staffing, and practical solutions when things need to run properly.">Firmaevents, bemanding og praktiske løsninger, når der skal være styr på tingene.</p>
-            </div>
-            <div class="mini">
-              <b data-da="Mennesker til opgaven" data-en="People for the job">Mennesker til opgaven</b>
-              <p data-da="Vi hjælper med at finde de rette hænder, alt efter hvad der er brug for." data-en="We help find the right people depending on what is needed.">Vi hjælper med at finde de rette hænder, alt efter hvad der er brug for.</p>
-            </div>
-            <div class="mini">
-              <b data-da="Noget lidt andet" data-en="Something a bit different">Noget lidt andet</b>
-              <p data-da="Hvis din opgave ikke passer i en kasse, er det netop derfor du skal skrive til os." data-en="If your task does not fit neatly into a box, that is exactly why you should contact us.">Hvis din opgave ikke passer i en kasse, er det netop derfor du skal skrive til os.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<section>
+  <h2>Kontakt os</h2>
+  <div class="contact">
+    <input type="text" placeholder="Navn" />
+    <input type="email" placeholder="Email" />
+    
+    <select>
+      <option>Arrangement</option>
+      <option>Service</option>
+      <option>Praktisk hjælp</option>
+      <option>Søg job</option>
+    </select>
 
-    <section id="services">
-      <div class="container">
-        <div class="section-head">
-          <div><h2 data-da="Hvad vi hjælper med" data-en="What we help with">Hvad vi hjælper med</h2></div>
-          <p data-da="Vi vil gerne gøre det meget tydeligt: Du behøver ikke vide præcis, hvad du mangler. Hvis du bare ved, at du har brug for hjælp til et arrangement eller en praktisk opgave, kan du skrive til os." data-en="We want to make this very clear: you do not need to know exactly what you need. If you simply know you need help with an event or a practical task, you can contact us.">Vi vil gerne gøre det meget tydeligt: Du behøver ikke vide præcis, hvad du mangler. Hvis du bare ved, at du har brug for hjælp til et arrangement eller en praktisk opgave, kan du skrive til os.</p>
-        </div>
+    <textarea placeholder="Skriv din besked"></textarea>
+    <button>Send</button>
+  </div>
+</section>
 
-        <div class="services">
-          <div class="card service"><div class="icon">01</div><h3 data-da="Arrangementer og events" data-en="Events and occasions">Arrangementer og events</h3><p data-da="Vi hjælper med arrangementer i mange former — både privat og professionelt." data-en="We help with events in many forms — both private and professional.">Vi hjælper med arrangementer i mange former — både privat og professionelt.</p></div>
-          <div class="card service"><div class="icon">02</div><h3 data-da="Bemanding og service" data-en="Staffing and service">Bemanding og service</h3><p data-da="Vi kan hjælpe med folk til service, bar, afvikling, oprydning og andet praktisk arbejde." data-en="We can help with people for service, bar work, execution, cleanup, and other practical work.">Vi kan hjælpe med folk til service, bar, afvikling, oprydning og andet praktisk arbejde.</p></div>
-          <div class="card service"><div class="icon">03</div><h3 data-da="Praktisk hjælp" data-en="Practical support">Praktisk hjælp</h3><p data-da="Det kan være før, under eller efter et arrangement — eller bare en opgave, der skal løses ordentligt." data-en="This can be before, during, or after an event — or simply a task that needs to be handled properly.">Det kan være før, under eller efter et arrangement — eller bare en opgave, der skal løses ordentligt.</p></div>
-          <div class="card service"><div class="icon">04</div><h3 data-da="Skræddersyede løsninger" data-en="Tailored solutions">Skræddersyede løsninger</h3><p data-da="Vi holder os brede, så vi kan tilpasse os den enkelte kunde og den enkelte opgave." data-en="We stay broad so we can adapt to each customer and each task.">Vi holder os brede, så vi kan tilpasse os den enkelte kunde og den enkelte opgave.</p></div>
-        </div>
-
-        <div class="card wide-copy">
-          <p data-da="Kort sagt: Hvis du mangler hjælp til et arrangement, mennesker til en opgave eller bare gerne vil høre, om noget kan lade sig gøre, så er det præcis den slags henvendelser vi gerne vil have. Det behøver ikke være kompliceret. Du skriver bare, hvad du har brug for, og så ser vi på en løsning." data-en="In short: if you need help with an event, people for a task, or simply want to ask whether something can be done, that is exactly the kind of inquiry we want. It does not need to be complicated. Just tell us what you need, and we will look at a solution.">Kort sagt: Hvis du mangler hjælp til et arrangement, mennesker til en opgave eller bare gerne vil høre, om noget kan lade sig gøre, så er det præcis den slags henvendelser vi gerne vil have. Det behøver ikke være kompliceret. Du skriver bare, hvad du har brug for, og så ser vi på en løsning.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="process">
-      <div class="container split">
-        <div class="card process">
-          <div class="section-head" style="margin-bottom:0; display:block;">
-            <h2 data-da="Sådan foregår det" data-en="How it works">Sådan foregår det</h2>
-            <p data-da="Enkelt og lige til." data-en="Simple and straightforward.">Enkelt og lige til.</p>
-          </div>
-          <div class="steps">
-            <div class="step"><div class="nr">1</div><div><h4 data-da="Du fortæller kort om opgaven" data-en="You tell us about the task">Du fortæller kort om opgaven</h4><p data-da="Skriv hvad du skal bruge hjælp til. Du behøver ikke have det hele planlagt på forhånd." data-en="Tell us what you need help with. You do not need to have everything planned in advance.">Skriv hvad du skal bruge hjælp til. Du behøver ikke have det hele planlagt på forhånd.</p></div></div>
-            <div class="step"><div class="nr">2</div><div><h4 data-da="Vi ser på mulighederne" data-en="We look at the options">Vi ser på mulighederne</h4><p data-da="Vi vurderer, hvordan vi bedst kan hjælpe, og vender tilbage med en løsning." data-en="We assess how we can best help and come back with a solution.">Vi vurderer, hvordan vi bedst kan hjælpe, og vender tilbage med en løsning.</p></div></div>
-            <div class="step"><div class="nr">3</div><div><h4 data-da="Vi hjælper med at få det til at ske" data-en="We help make it happen">Vi hjælper med at få det til at ske</h4><p data-da="Når vi har aftalt noget, hjælper vi med at føre det ud i livet på en måde, der passer til opgaven." data-en="Once we agree on a plan, we help bring it to life in a way that fits the task.">Når vi har aftalt noget, hjælper vi med at føre det ud i livet på en måde, der passer til opgaven.</p></div></div>
-          </div>
-        </div>
-
-        <div id="contact" class="card contact">
-          <div class="section-head" style="margin-bottom:0; display:block;">
-            <h2 data-da="Kontakt os" data-en="Contact us">Kontakt os</h2>
-            <p data-da="Skriv kort hvad du har brug for hjælp til, så vender vi tilbage." data-en="Tell us briefly what you need help with and we will get back to you.">Skriv kort hvad du har brug for hjælp til, så vender vi tilbage.</p>
-          </div>
-          <form action="https://formspree.io/f/xbdpqolr" method="POST">
-            <input type="text" name="name" placeholder="Navn / Name" required />
-            <input type="email" name="email" placeholder="Email" required />
-            <select name="type">
-              <option value="" data-da="Hvad drejer det sig om?" data-en="What is this about?">Hvad drejer det sig om?</option>
-              <option data-da="Arrangement eller event" data-en="Event or occasion">Arrangement eller event</option>
-              <option data-da="Bemanding eller service" data-en="Staffing or service">Bemanding eller service</option>
-              <option data-da="Praktisk hjælp" data-en="Practical support">Praktisk hjælp</option>
-              <option data-da="Noget andet" data-en="Something else">Noget andet</option>
-            </select>
-            <textarea name="message" placeholder="Skriv gerne hvad du forestiller dig, hvornår det er, og hvad du gerne vil have hjælp til / Tell us what you have in mind, when it is, and what you need help with."></textarea>
-            <button class="cta cta-primary" type="submit" data-da="Send besked" data-en="Send message">Send besked</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section id="jobs">
-      <div class="container jobs-wrap">
-        <div class="card jobs">
-          <div class="section-head" style="margin-bottom:0; display:block;">
-            <h2 data-da="Søg job hos os" data-en="Apply to work with us">Søg job hos os</h2>
-            <p data-da="Vi er åbne for henvendelser fra næsten alle typer profiler. Det vigtigste er ikke, om du er helt ny eller meget erfaren. Det vigtigste er, at du har lyst til at arbejde og kan være en god del af en løsning." data-en="We are open to hearing from almost all kinds of profiles. What matters most is not whether you are completely new or highly experienced. What matters is that you want to work and can be part of a good solution.">Vi er åbne for henvendelser fra næsten alle typer profiler. Det vigtigste er ikke, om du er helt ny eller meget erfaren. Det vigtigste er, at du har lyst til at arbejde og kan være en god del af en løsning.</p>
-          </div>
-          <div class="job-points">
-            <div data-da="Vi kan bruge alt fra personer med minimal erfaring til mere professionelle profiler — alt efter hvad kunden har brug for." data-en="We can use everyone from people with minimal experience to more professional profiles — depending on what the customer needs.">Vi kan bruge alt fra personer med minimal erfaring til mere professionelle profiler — alt efter hvad kunden har brug for.</div>
-            <div data-da="Det kan for eksempel være service, bar, oprydning, opbygning, kundekontakt, logistik, foto, video eller bare det at kunne tage ansvar og møde op til tiden." data-en="This may include service, bar work, cleanup, setup, customer contact, logistics, photo, video, or simply being reliable and showing up on time.">Det kan for eksempel være service, bar, oprydning, opbygning, kundekontakt, logistik, foto, video eller bare det at kunne tage ansvar og møde op til tiden.</div>
-            <div data-da="Jo flere forskellige mennesker vi har i netværket, jo bedre kan vi matche forskellige kunder og forskellige ønsker." data-en="The more different kinds of people we have in our network, the better we can match different clients and different needs.">Jo flere forskellige mennesker vi har i netværket, jo bedre kan vi matche forskellige kunder og forskellige ønsker.</div>
-          </div>
-        </div>
-
-        <div class="card jobs">
-          <div class="section-head" style="margin-bottom:0; display:block;">
-            <h2 data-da="Ansøg her" data-en="Apply here">Ansøg her</h2>
-            <p data-da="Du behøver ikke skrive en perfekt ansøgning. Skriv bare ærligt, hvad du kan, og hvad du kunne tænke dig at hjælpe med." data-en="You do not need a perfect application. Just write honestly about what you can do and what you would like to help with.">Du behøver ikke skrive en perfekt ansøgning. Skriv bare ærligt, hvad du kan, og hvad du kunne tænke dig at hjælpe med.</p>
-          </div>
-          <form action="https://formspree.io/f/mqegwpol" method="POST">
-            <input type="text" name="name" placeholder="Fulde navn / Full name" required />
-            <input type="email" name="email" placeholder="Email" required />
-            <input type="text" name="phone" placeholder="Telefonnummer / Phone number" />
-            <input type="text" name="skills" placeholder="Hvad kan du hjælpe med? Fx service, bar, oprydning, foto, video, logistik" />
-            <textarea name="message" placeholder="Skriv lidt om dig selv, din erfaring, hvad du er god til, og hvornår du typisk kan arbejde / Tell us about yourself, your experience, what you are good at, and when you are usually available."></textarea>
-            <button class="cta cta-primary" type="submit" data-da="Send jobansøgning" data-en="Send application">Send jobansøgning</button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="card footer-card">
-        <div>
-  <strong>HAPS Solutions</strong><br />
-  <span>Email: <a href="mailto:kontakt@hapssolutions.dk">kontakt@hapssolutions.dk</a></span><br />
-  <span>Job: <a href="mailto:job@hapssolutions.dk">job@hapssolutions.dk</a></span>
-</div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const toggle = document.getElementById('langToggle');
-    let lang = 'da';
-    function applyLang(nextLang){
-      lang = nextLang;
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-da],[data-en]').forEach(el => {
-        const value = el.getAttribute(lang === 'da' ? 'data-da' : 'data-en');
-        if(!value) return;
-        if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA'){
-          el.placeholder = value;
-        } else if(el.tagName === 'OPTION'){
-          el.textContent = value;
-        } else {
-          el.textContent = value;
-        }
-      });
-      toggle.textContent = lang === 'da' ? 'EN' : 'DA';
-    }
-    toggle.addEventListener('click', () => applyLang(lang === 'da' ? 'en' : 'da'));
-  </script>
 </body>
 </html>
