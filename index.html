@@ -3,281 +3,713 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HAPS Solutions</title>
+  <title>HAPS Solutions – Eventhjælp, bartendere & DJs</title>
+  <meta name="description" content="HAPS Solutions hjælper med events: bartendere, DJs, servering, oprydning og skræddersyede løsninger. Uanset budget og idé – så finder vi en løsning." />
+  <meta property="og:title" content="HAPS Solutions – Eventhjælp, bartendere & DJs" />
+  <meta property="og:description" content="Uanset budget og idé – så finder vi en løsning." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0f0d0b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f7f5f0;
-      color: #111;
-      line-height: 1.5;
+    :root {
+      --bg: #0f0d0b;
+      --bg-soft: #17140f;
+      --card: #1d1914;
+      --line: #2e2820;
+      --text: #f4efe6;
+      --muted: #b3a998;
+      --gold: #e2b25c;
+      --gold-dark: #c8953d;
+      --light: #f7f3ec;
+      --light-text: #1a1611;
+      --radius: 18px;
     }
 
-    section {
-      padding: 50px 20px;
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
+
+    h1, h2, h3 {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 12px;
+    }
+
+    a { color: inherit; }
 
     .container {
-      max-width: 1000px;
+      max-width: 1120px;
       margin: 0 auto;
+      padding: 0 20px;
     }
 
-    .hero {
-      background: #fffaf0;
-      text-align: center;
-      padding: 80px 20px;
+    section { padding: 96px 0; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
     }
+
+    .section-head {
+      max-width: 640px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .section-head h2 { font-size: clamp(30px, 4vw, 44px); }
+
+    .section-head p { color: var(--muted); font-size: 17px; margin: 0; }
+
+    /* Knapper */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 15px 26px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-gold { background: var(--gold); color: #1a1408; }
+    .btn-gold:hover { background: var(--gold-dark); }
+
+    .btn-ghost { border-color: rgba(244, 239, 230, 0.3); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--text); }
+
+    /* Navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(15, 13, 11, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .logo {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 700;
+      font-size: 22px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 15px;
+      color: var(--muted);
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-links .btn { padding: 10px 20px; font-size: 15px; color: #1a1408; }
+    .nav-links .btn:hover { color: #1a1408; }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      color: var(--text);
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 120px 0 110px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -20% -10% auto;
+      height: 700px;
+      background:
+        radial-gradient(closest-side at 30% 40%, rgba(226, 178, 92, 0.22), transparent),
+        radial-gradient(closest-side at 72% 55%, rgba(176, 82, 52, 0.18), transparent);
+      pointer-events: none;
+    }
+
+    .hero .container { position: relative; }
 
     .hero h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
+      font-size: clamp(40px, 7vw, 76px);
+      max-width: 900px;
+      margin: 0 auto 22px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
     }
 
     .hero p {
-      font-size: 20px;
-      max-width: 700px;
-      margin: 0 auto 20px;
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 36px;
     }
 
-    .hero .subtext {
-      font-size: 16px;
-      color: #555;
-      max-width: 700px;
-      margin: 0 auto;
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
     }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 30px;
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 56px;
+      padding: 0;
+      list-style: none;
     }
 
-    .section-text {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 30px;
-      color: #555;
+    .tags li {
+      padding: 8px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 14px;
+      color: var(--muted);
+      background: rgba(29, 25, 20, 0.6);
     }
 
+    /* Ydelser */
     .services {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
-    .box {
-      background: white;
-      padding: 22px;
-      border-radius: 14px;
-      border: 1px solid #ddd;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      text-align: center;
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px 26px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .box h3 {
-      margin-top: 0;
-      font-size: 20px;
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(226, 178, 92, 0.5);
     }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(226, 178, 92, 0.12);
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .card h3 { font-size: 22px; }
+
+    .card p { color: var(--muted); margin: 0; }
+
+    .card.highlight {
+      background: linear-gradient(145deg, #2a2116, #1d1914);
+      border-color: rgba(226, 178, 92, 0.45);
+    }
+
+    /* Sådan fungerer det */
+    .how { background: var(--light); color: var(--light-text); }
+
+    .how .section-head p { color: #5f564a; }
+
+    .how .eyebrow { color: #a5732a; }
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin-top: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      counter-reset: step;
     }
 
     .step {
-      background: white;
-      padding: 22px;
-      border-radius: 14px;
-      border: 1px solid #ddd;
-      text-align: center;
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      border: 1px solid #e6dfd2;
     }
 
-    .social, .jobs, .contact {
-      background: white;
-      padding: 30px;
-      border-radius: 14px;
-      border: 1px solid #ddd;
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
+    .step-num {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #d9a650;
+      line-height: 1;
+      margin-bottom: 16px;
     }
+
+    .step h3 { font-size: 22px; }
+
+    .step p { margin: 0; color: #5f564a; }
+
+    /* Job + Instagram */
+    .split {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 18px;
+    }
+
+    .panel {
+      border-radius: var(--radius);
+      padding: 44px 40px;
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+
+    .panel h2 { font-size: clamp(28px, 3.4vw, 38px); }
+
+    .panel p { color: var(--muted); margin: 0 0 16px; }
+
+    .panel .btn { margin-top: 10px; }
+
+    .panel.jobs {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(226, 178, 92, 0.18), transparent 55%),
+        var(--card);
+    }
+
+    .roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 4px 0 20px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .roles li {
+      font-size: 14px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(244, 239, 230, 0.07);
+      color: var(--text);
+    }
+
+    .insta-handle {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 24px;
+      color: var(--text) !important;
+      margin-bottom: 20px !important;
+    }
+
+    /* Kontakt */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact-info h2 { font-size: clamp(32px, 4vw, 46px); }
+
+    .contact-info p { color: var(--muted); font-size: 17px; }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 28px 0 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .contact-list svg { color: var(--gold); flex-shrink: 0; }
 
     form {
-      text-align: left;
-      margin-top: 20px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--text);
     }
 
     input, textarea, select {
       width: 100%;
-      margin-bottom: 14px;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+      margin-bottom: 18px;
+      padding: 13px 14px;
+      background: var(--bg-soft);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font: inherit;
       font-size: 15px;
-      box-sizing: border-box;
+      transition: border-color 0.15s ease;
     }
 
-    textarea {
-      min-height: 130px;
-      resize: vertical;
+    input::placeholder, textarea::placeholder { color: #7d7466; }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--gold);
     }
 
-    button {
-      width: 100%;
-      padding: 14px;
-      background: #111;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23b3a998' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
     }
 
-    button:hover {
-      opacity: 0.9;
-    }
+    textarea { min-height: 140px; resize: vertical; }
 
-    a {
-      color: inherit;
-    }
+    form .btn { width: 100%; }
 
-    .footer-note {
+    .form-note {
       text-align: center;
-      color: #666;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 14px 0 0;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 36px 0;
+      color: var(--muted);
       font-size: 14px;
-      margin-top: 15px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* Mobil */
+    @media (max-width: 860px) {
+      section { padding: 72px 0; }
+
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 20px 20px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+        display: none;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a { padding: 14px 0; border-bottom: 1px solid var(--line); }
+
+      .nav-links .btn { margin-top: 14px; border-bottom: 0; }
+
+      .hero { padding: 80px 0 72px; }
+
+      .split, .contact-wrap { grid-template-columns: 1fr; }
+
+      .services { grid-template-columns: repeat(2, 1fr); }
+
+      .panel { padding: 34px 26px; }
+
+      form { padding: 24px 20px; }
+    }
+
+    @media (max-width: 520px) {
+      .field-row { grid-template-columns: 1fr; gap: 0; }
+
+      .services { grid-template-columns: 1fr; }
+
+      .hero-actions .btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
     }
   </style>
 </head>
 
 <body>
 
-  <section class="hero">
-    <div class="container">
-      <h1>HAPS Solutions</h1>
-      <p>Vi hjælper med events – nemt, fleksibelt og skræddersyet til dine behov.</p>
-      <p class="subtext">
-        Uanset om du mangler bartendere, DJ, servering, oprydning eller bare ekstra hænder,
-        så finder vi en løsning. Intet ønske er for stort eller småt.
-      </p>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="logo">HAPS<span>.</span>Solutions</a>
+
+      <button class="menu-toggle" aria-label="Åbn menu" aria-expanded="false" aria-controls="nav-links">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#ydelser">Ydelser</a>
+        <a href="#saadan">Sådan virker det</a>
+        <a href="#job">Job</a>
+        <a href="#kontakt" class="btn btn-gold">Få et tilbud</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <section>
-    <div class="container">
-      <h2>Det tilbyder vi</h2>
-      <p class="section-text">
-        Fra små private arrangementer til større events. Fortæl os hvad du mangler, så ser vi på mulighederne.
-      </p>
+  <main id="top">
 
-      <div class="services">
-        <div class="box">
-          <h3>Bartendere</h3>
-          <p>Bar, drinks og god service til dit arrangement.</p>
-        </div>
-
-        <div class="box">
-          <h3>DJs</h3>
-          <p>Musik og stemning til festen eller eventet.</p>
-        </div>
-
-        <div class="box">
-          <h3>Servering</h3>
-          <p>Personale til gæster, service og afvikling.</p>
-        </div>
-
-        <div class="box">
-          <h3>Oprydning</h3>
-          <p>Praktisk hjælp før, under og efter arrangementet.</p>
-        </div>
-
-        <div class="box">
-          <h3>Alt hvad hjertet begærer</h3>
-          <p>Har du en særlig idé eller et særligt ønske, så hører vi gerne om det.</p>
-        </div>
-
-        <div class="box">
-          <h3>Intet ønske er for stort eller småt</h3>
-          <p>Vi hjælper både med små behov og større løsninger.</p>
-        </div>
-
-        <div class="box">
-          <h3>Eventhjælp</h3>
-          <p>Ekstra hænder og hjælp til at få dagen til at spille.</p>
-        </div>
-
-        <div class="box">
-          <h3>Skræddersyede løsninger</h3>
-          <p>Du fortæller os, hvad du har brug for – vi finder en løsning.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h2>Sådan fungerer det</h2>
-      <p class="section-text">
-        Det skal være nemt at få hjælp.
-      </p>
-
-      <div class="steps">
-        <div class="step">
-          <h3>1. Du kontakter os</h3>
-          <p>Fortæl os kort hvad du søger hjælp til.</p>
-        </div>
-
-        <div class="step">
-          <h3>2. Vi finder en løsning</h3>
-          <p>Vi ser på mulighederne og vender tilbage.</p>
-        </div>
-
-        <div class="step">
-          <h3>3. Du nyder arrangementet</h3>
-          <p>Vi hjælper med at få det hele til at spille.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <div class="social">
-        <h2>Følg os</h2>
-        <p>Følg med på Instagram og se mere af det, vi laver.</p>
-        <p><strong>Instagram:</strong> @hapssolutions.dk</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <div class="jobs">
-        <h2>Vil du arbejde med os?</h2>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">Eventhjælp · Bartendere · DJs</span>
+        <h1>Uanset budget og idé — <em>så finder vi en løsning.</em></h1>
         <p>
-          Vi søger løbende bartendere, serveringspersonale, DJs og andre, der vil være en del af events.
+          HAPS Solutions hjælper med events – nemt, fleksibelt og skræddersyet til dine behov.
+          Mangler du bartendere, DJ, servering, oprydning eller bare ekstra hænder? Så klarer vi det.
         </p>
-        <p>
-          Skriv til os og fortæl hvad du kan, hvad du har erfaring med, og hvad du søger.
-        </p>
-      </div>
-    </div>
-  </section>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-gold">
+            Få et uforpligtende tilbud
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#ydelser" class="btn btn-ghost">Se hvad vi tilbyder</a>
+        </div>
 
-  <section>
-    <div class="container">
-      <div class="contact">
-        <h2>Kontakt os</h2>
-        <p>Vælg det der passer bedst, og skriv kort hvad du søger hjælp til.</p>
+        <ul class="tags">
+          <li>Private fester</li>
+          <li>Firmaevents</li>
+          <li>Konfirmationer</li>
+          <li>Fødselsdage</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="ydelser">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Det tilbyder vi</span>
+          <h2>Alt det, der får dagen til at spille</h2>
+          <p>Fra små private arrangementer til større events. Intet ønske er for stort eller småt.</p>
+        </div>
+
+        <div class="services">
+          <div class="card">
+            <div class="icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14l-7 8z"/><path d="M12 12v7"/><path d="M8 20h8"/></svg>
+            </div>
+            <h3>Bartendere</h3>
+            <p>Bar, drinks og god service, der løfter stemningen til dit arrangement.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v2"/></svg>
+            </div>
+            <h3>DJs</h3>
+            <p>Musik og stemning, der passer til netop din fest eller dit event.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M5 17a7 7 0 0 1 14 0"/><path d="M12 8V6"/><path d="M4 20h16"/></svg>
+            </div>
+            <h3>Servering</h3>
+            <p>Personale til gæster, service og en glat afvikling hele vejen.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3 8 13"/><path d="M6 13h8l-1 8H7z"/><path d="M17 8l2-2M19 12h2M17 16l2 2"/></svg>
+            </div>
+            <h3>Oprydning</h3>
+            <p>Praktisk hjælp før, under og efter – så du kan nyde dagen.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M15 20a4.5 4.5 0 0 1 6-4.2"/></svg>
+            </div>
+            <h3>Eventhjælp</h3>
+            <p>Ekstra hænder, der får logistik, opsætning og dagen til at gå op.</p>
+          </div>
+
+          <div class="card highlight">
+            <div class="icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg>
+            </div>
+            <h3>Skræddersyet</h3>
+            <p>Har du en særlig idé eller et særligt ønske? Fortæl os hvad du har brug for – så finder vi en løsning.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="saadan" class="how">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Sådan fungerer det</span>
+          <h2>Det skal være nemt at få hjælp</h2>
+          <p>Tre enkle trin fra idé til et arrangement, du kan læne dig tilbage og nyde.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <h3>Du kontakter os</h3>
+            <p>Fortæl os kort, hvad du søger hjælp til – dato, sted og antal gæster.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">02</div>
+            <h3>Vi finder en løsning</h3>
+            <p>Vi ser på mulighederne og vender hurtigt tilbage med et forslag.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">03</div>
+            <h3>Du nyder arrangementet</h3>
+            <p>Vi sørger for, at det hele spiller – du fokuserer på dine gæster.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="job">
+      <div class="container split">
+        <div class="panel jobs">
+          <span class="eyebrow">Bliv en del af holdet</span>
+          <h2>Vil du arbejde med os?</h2>
+          <p>Vi søger løbende folk, der vil være en del af fede events:</p>
+          <ul class="roles">
+            <li>Bartendere</li>
+            <li>Serveringspersonale</li>
+            <li>DJs</li>
+            <li>Eventhjælpere</li>
+          </ul>
+          <p>Skriv til os og fortæl, hvad du kan, hvad du har erfaring med, og hvad du søger.</p>
+          <a href="#kontakt" class="btn btn-gold" data-kategori="Søg job">Søg job hos os</a>
+        </div>
+
+        <div class="panel">
+          <span class="eyebrow">Følg os</span>
+          <h2>Instagram</h2>
+          <p>Følg med og se mere af det, vi laver.</p>
+          <p class="insta-handle">@hapssolutions.dk</p>
+          <a href="https://www.instagram.com/hapssolutions.dk/" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            Følg på Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="container contact-wrap">
+        <div class="contact-info">
+          <span class="eyebrow">Kontakt os</span>
+          <h2>Lad os gøre dit næste event til en succes</h2>
+          <p>Vælg det der passer bedst, og skriv kort hvad du søger hjælp til. Vi vender tilbage hurtigst muligt.</p>
+
+          <ul class="contact-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              Uforpligtende tilbud
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              Løsninger til ethvert budget
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              Du kan også skrive til os på Instagram
+            </li>
+          </ul>
+        </div>
 
         <form action="https://formspree.io/f/xbdpqolr" method="POST">
-          <input type="text" name="navn" placeholder="Navn" required />
-          <input type="email" name="email" placeholder="Email" required />
-          <input type="text" name="telefon" placeholder="Telefonnummer" />
+          <div class="field-row">
+            <div>
+              <label for="navn">Navn</label>
+              <input type="text" id="navn" name="navn" placeholder="Dit navn" required />
+            </div>
+            <div>
+              <label for="telefon">Telefon</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="Valgfrit" />
+            </div>
+          </div>
 
-          <select name="kategori" required>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="din@email.dk" required />
+
+          <label for="kategori">Hvad drejer det sig om?</label>
+          <select id="kategori" name="kategori" required>
             <option value="">Vælg kategori</option>
             <option>Privat fest</option>
             <option>Firmaevent</option>
@@ -291,17 +723,48 @@
             <option>Noget andet</option>
           </select>
 
-          <textarea name="besked" placeholder="Skriv din besked her..." required></textarea>
+          <label for="besked">Besked</label>
+          <textarea id="besked" name="besked" placeholder="Fortæl gerne om dato, sted, antal gæster og hvad du har brug for..." required></textarea>
 
-          <button type="submit">Send</button>
+          <button type="submit" class="btn btn-gold">Send besked</button>
+          <p class="form-note">Uforpligtende – vi vender tilbage hurtigst muligt.</p>
         </form>
-
-        <p class="footer-note">
-          Du kan også skrive direkte til os på vores sociale medier eller via mail.
-        </p>
       </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> HAPS Solutions</span>
+      <a href="https://www.instagram.com/hapssolutions.dk/" target="_blank" rel="noopener">Instagram · @hapssolutions.dk</a>
     </div>
-  </section>
+  </footer>
+
+  <script>
+    // Mobilmenu
+    const toggle = document.querySelector(".menu-toggle");
+    const links = document.getElementById("nav-links");
+    toggle.addEventListener("click", () => {
+      const open = links.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open);
+    });
+    links.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        links.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      })
+    );
+
+    // "Søg job"-knappen vælger kategorien i formularen
+    document.querySelectorAll("[data-kategori]").forEach((el) =>
+      el.addEventListener("click", () => {
+        document.getElementById("kategori").value = el.dataset.kategori;
+      })
+    );
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
